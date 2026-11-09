@@ -1,5 +1,7 @@
 # 💳 Merchant Payout App Challenge (Expo)
 
+> How to run this solution, the design notes, and a walkthrough outline are in [SOLUTION.md](./SOLUTION.md).
+
 Welcome to the Merchant Payout Challenge! This is a mobile frontend coding challenge designed to assess your ability to implement a financial payout experience using React Native and Expo.
 
 Your task is to build a merchant dashboard and payout flow that allows users to:
