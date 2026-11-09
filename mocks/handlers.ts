@@ -18,6 +18,22 @@ import type {
   PaginatedActivityResponse,
 } from '../types/api';
 
+declare global {
+  var __IS_JEST__: boolean | undefined;
+}
+
+/**
+ * The mock server waits 0.5–2s so the loading states are visible on a device.
+ * Tests opt out by setting `__IS_JEST__` before the suite starts.
+ */
+async function simulateNetworkLatency(): Promise<void> {
+  if (globalThis.__IS_JEST__) {
+    return;
+  }
+  const delayMs = Math.floor(Math.random() * 1500) + 500;
+  await new Promise((resolve) => setTimeout(resolve, delayMs));
+}
+
 /**
  * Helper function to log MSW requests with color coding
  */
@@ -28,6 +44,10 @@ function logRequest(
   responseData: unknown,
   requestBody?: unknown
 ) {
+  if (globalThis.__IS_JEST__) {
+    return;
+  }
+
   // Determine color based on status code
   let statusColor = '#4CAF50'; // Green for 2xx
   if (status >= 400 && status < 500) {
@@ -71,9 +91,7 @@ function logRequest(
 export const handlers = [
   // GET /api/merchant
   http.get(`${API_BASE_URL}/api/merchant`, async ({ request }) => {
-    // Add random timeout to simulate network latency (500-2000ms)
-    const delay = Math.floor(Math.random() * 1500) + 500;
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    await simulateNetworkLatency();
 
     // Check for error simulation header
     const errorHeader = request.headers.get('x-simulate-error');
@@ -111,9 +129,7 @@ export const handlers = [
 
   // GET /api/merchant/activity - Dedicated endpoint for paginated activity
   http.get(`${API_BASE_URL}/api/merchant/activity`, async ({ request }) => {
-    // Add random timeout to simulate network latency (500-2000ms)
-    const delay = Math.floor(Math.random() * 1500) + 500;
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    await simulateNetworkLatency();
 
     // Parse cursor and limit from query parameters
     const url = new URL(request.url);

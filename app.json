@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.reactnativeinterview"
+      "bundleIdentifier": "com.anonymous.reactnativeinterview",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Authenticate with Face ID to approve payouts over 1,000.00."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +24,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.reactnativeinterview"
+      "package": "com.anonymous.reactnativeinterview",
+      "softwareKeyboardLayoutMode": "resize"
     },
     "web": {
       "output": "static",
@@ -29,6 +33,7 @@
     },
     "plugins": [
       "expo-router",
+      "./modules/screen-security/app.plugin.js",
       [
         "expo-splash-screen",
         {

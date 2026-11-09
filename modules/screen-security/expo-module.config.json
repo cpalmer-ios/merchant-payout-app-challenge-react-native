@@ -1,0 +1,15 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["ScreenSecurityModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.screensecurity.ScreenSecurityModule"],
+    "publication": {
+      "groupId": "expo.modules.screensecurity",
+      "artifactId": "expo.modules.screensecurity",
+      "version": "1.0.0",
+      "repository": "local-maven-repo"
+    }
+  }
+}

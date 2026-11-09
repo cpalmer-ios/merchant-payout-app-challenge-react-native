@@ -1,0 +1,13 @@
+{
+  "name": "screen-security",
+  "version": "1.0.0",
+  "description": "Native device identity, biometric approval, and screenshot detection for payouts.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
